@@ -1,0 +1,66 @@
+<html>
+<head>
+    <title>Assignment4</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form action="/ass4/add" method="POST">
+        <input type="text" name="pre" placeholder="name" value="">
+        <input type="text" name="email" placeholder="email" value="">
+        <button type="submit"> Submite</button>
+    </form>
+    <% schema2.forEach( item=>{%>
+            <% if (item.isPromoted == true) {%>
+                <div class="truval">
+                    <p>
+                        <%= item.name%>
+                    </p>
+                    <p>
+                        <%= item.email%>
+                    </p>
+                    <!-- <p>
+                                <%= item.isPromoted%>
+                            </p> -->
+                </div>
+
+                <% }else if(item.isPromoted== false ){%>
+                    <div class="falval">
+                        <p>
+                            <%= item.name%>
+                        </p>
+                        <p>
+                            <%= item.email%>
+                        </p>
+                         <!-- <p>
+                                <%= item.isPromoted%>
+                            </p> -->
+                    </div>
+
+                    <%}else{%>
+                        <div class="nulval">
+                            <p>
+                                <%= item.name%>
+                            </p>
+                            <p>
+                                <%= item.email%>
+                            </p>
+                            <!-- <p>
+                                <%= item.isPromoted%>
+                            </p> -->
+                          
+                        </div>
+                        <%}%>
+
+                            <form  action="/ass4/<%= item._id %>/isPromoted?_method=PUT" method="POST">
+                                <button id="edit-<%= item.name %>" type="submit">Promote / Demote</button>
+                            </form>
+                            <form action="/ass4/<%= item._id %>/delete?_method=DELETE"  method="POST">
+                                <button id="delete-<%= item.name %>">Delete</button>
+                            </form>
+        <%})%>
+
+
+
+</body>
+
+</html>
